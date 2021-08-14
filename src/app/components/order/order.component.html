@@ -1,0 +1,46 @@
+<mat-horizontal-stepper>
+  <mat-step>
+    <ng-template matStepLabel>Tus Productos</ng-template>
+    <div *ngIf="products$ | async as products">
+      <p *ngIf="products.length === 0">No tienes productos en tu carrito</p>
+      <div class="row" *ngFor="let product of products">
+        <div class="col-xs-4">
+          <img [src]="product.image" [alt]="product.title" />
+        </div>
+        <div class="col-xs-4">
+          {{ product.title }}
+        </div>
+        <div class="col-xs-4">
+          {{ product.price }}
+        </div>
+      </div>
+    </div>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>Tus Datos</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="Last name, First name"
+          formControlName="firstCtrl"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

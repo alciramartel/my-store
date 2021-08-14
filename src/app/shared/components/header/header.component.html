@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <!-- <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    >
+    <mat-icon>menu</mat-icon>
+  </button> -->
+  <div class="row between-xs header-width">
+    <span>My Store</span>
+    <nav>
+      <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+      <a mat-button routerLink="/products" routerLinkActive="active"
+        >Products</a
+      >
+      <a mat-button routerLink="/contact" routerLinkActive="active">Contact</a>
+      <button
+        mat-raised-button
+        [matBadge]="total$ | async"
+        matBadgeColor="warn"
+        aria-label="icon-button with cart icon"
+        routerLink="/order"
+      >
+        <mat-icon>shopping_cart</mat-icon>
+        Carrito
+      </button>
+    </nav>
+  </div>
+</mat-toolbar>

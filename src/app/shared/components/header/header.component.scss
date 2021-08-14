@@ -1,0 +1,12 @@
+.header-width {
+  width: 100%;
+}
+
+nav > a {
+  padding: 0 10px;
+  margin-right: 15px;
+  &.active {
+    background-color: white;
+    color: black;
+  }
+}

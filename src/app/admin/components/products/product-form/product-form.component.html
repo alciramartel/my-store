@@ -1,0 +1,90 @@
+<form [formGroup]="productForm" novalidate (ngSubmit)="onSubmit($event)">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Create Product</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row" *ngIf="id == null">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="number"
+              placeholder="ID"
+              formControlName="id"
+            />
+            <mat-error *ngIf="productForm.controls['id'].hasError('required')">
+              ID of product is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Title" formControlName="title" />
+            <mat-error
+              *ngIf="productForm.controls['title'].hasError('required')"
+            >
+              Name of product is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Price" formControlName="price" />
+            <mat-error
+              *ngIf="productForm.controls['price'].hasError('required')"
+            >
+              Price of product is <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="productForm.controls['price'].hasError('price_invalid')"
+            >
+              Price must be greater than <strong>0</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea
+              matInput
+              placeholder="Description"
+              formControlName="description"
+            ></textarea>
+            <mat-error
+              *ngIf="productForm.controls['description'].hasError('required')"
+            >
+              Description of product is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Image" formControlName="image">
+              <mat-option *ngFor="let image of images" [value]="image">
+                {{ image }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="productForm.invalid"
+      >
+        Submit
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
